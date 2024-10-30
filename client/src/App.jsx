@@ -1,7 +1,11 @@
-import "./App.css";
+import Header from "./components/Header";
+import TravelGuide from "./components/TravelGuide";
 
 function App() {
-  return <div className="App">{/* Start coding here */}</div>;
+  return <>
+  <Header/>
+  <TravelGuide/>
+  </>;
 }
 
 export default App;

@@ -44,7 +44,7 @@ export default function TravelGuide() {
   
 
   return (
-    <div className="w-screen flex flex-col justify-center items-center ">
+    <div className="w-full flex flex-col justify-center items-center ">
       {/* search */}
       <div className="xl:w-3/5 w-4/5 flex flex-col gap-4">
         <h2 className="text-xl text-gray-500 font-medium">ค้นหาที่เที่ยว</h2>
@@ -65,28 +65,30 @@ export default function TravelGuide() {
               className="lg:w-1/4 w-full h-64 object-cover rounded-3xl"
             />
             <div className="lg:w-3/4 w-full h-full flex flex-col gap-5">
-              <a href={data.url}>
+              <a href={data.url} target="_blank">
                 <h1 className="lg:text-3xl text-2xl font-medium text-gray-600">{data.title}</h1>
               </a>
               <p className="text-gray-500 font-medium">
                 {limitText(data.description, 100)} ...
-                <a href={data.url}>
+                <a href={data.url} target="_blank">
                   <span className="text-[#3E99D3]"> อ่านต่อ</span>
                 </a>
               </p>
-              <div className="flex gap-3 text-gray-500 items-center">
+              <div className="flex flex-col md:flex-row gap-3 text-gray-500 items-start md:items-center">
                 หมวด
+                <div className="flex flex-col md:gap-4 md:flex-row gap-1">
                 {data.tags.map((tag, index) => (
                   <div key={index} className="flex gap-3 ">
-                    <button
+                    <button 
                       onClick={() => handleTag(tag)}
                       className="underline"
                     >
                       {tag}
                     </button>
-                    {index === data.tags.length - 2 && <span>และ</span>}
+                    {index === data.tags.length - 2 && <span className="hidden md:block">และ</span>}
                   </div>
                 ))}
+                </div>
               </div>
               <div className="flex md:justify-between md:items-center flex-col md:flex-row gap-3">
                 <div className="flex gap-4">
@@ -119,9 +121,9 @@ export default function TravelGuide() {
         ))}
       </div>
       {/* Fixed bottom */}
-      {alert ? <div className="bg-[#389BD8] rounded-xl fixed right-0 bottom-0 w-1/6 h-[150px] flex flex-col items-center justify-center gap-5">
-        <CopyCheck className="text-white w-16 h-16"/>
-        <p className="text-white text-2xl">Copy URL To ClipBoard</p>
+      {alert ? <div className="bg-[#389BD8] rounded-xl fixed bottom-0 w-full h-[100px] flex flex-col items-center justify-center p-3">
+        <CopyCheck className="text-white w-10 h-10"/>
+        <p className="text-white text-xl">Copy URL To ClipBoard</p>
       </div> : null}
     </div>
   );
